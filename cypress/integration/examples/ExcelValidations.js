@@ -1,8 +1,7 @@
-
-
 /// <reference types="cypress" />
 //const neatCSV = require('neat-csv')
 import neatCSV from 'neat-csv';
+
 let productName
 describe('JWT Session', () => {
   it('is logged in through local storage', async() => {
@@ -36,20 +35,40 @@ describe('JWT Session', () => {
   })
     cy.get(".action__submit").click();
     cy.wait(2000)
-    cy.get(".order-summary button").click();
+    cy.get(".order-summary button").contains("Excel").click();
+    const filePath = Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_dwight.xlsx"
+    cy.task('excelToJsonConverter',filePath).then(function(result)
+    {
+      cy.log(result.data[1].A);
+      expect(productName).to.equal(result.data[1].B);
+      
+    })
+
+
+    cy.readFile(filePath).then(function(text)
+    {
+      expect(text).to.include("dsaf");
+    })
+
+
+
+    //content /
     
-  cy.readFile(Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_rahul.csv")
-  .then(async(text)=>
-  {
-    const csv =  await neatCSV(text)
-    console.log(csv)
-    const actualProductCSV = csv[0]["Product Name"]
-    expect(productName).to.equal(actualProductCSV)
 
-   
 
-  
+    //Browser(Engine) - JS code  -> Client Side Environment (Front end) - Cypress
+
+
+    //Node (Engine) - Js code -> Back End applications/Environment
+      //Accessing files - fs, Databaseaceess, 
+
+
+      //Task -(Files,DB) -> Config.js,  (ExcelToJson)-> cy.task(ExcelToJson)
+
+
+
+
   })
- 
-})
-})
+
+  })
+
