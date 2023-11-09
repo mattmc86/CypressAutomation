@@ -36,9 +36,11 @@ describe('JWT Session', () => {
   })
     cy.get(".action__submit").click();
     cy.wait(2000)
-    cy.get(".order-summary button").click();
+    cy.get(".order-summary button").contains('CSV').click();
+
+   
     
-  cy.readFile(Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_rahul.csv")
+  cy.readFile(Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_dwight.csv")
   .then(async(text)=>
   {
     const csv =  await neatCSV(text)

@@ -7,8 +7,9 @@
     "test": "node_modules\\.bin\\cypress run",
     "testHead": "npm run test -- --headed",
     "chromeTest": "npm run test -- -- browser chrome",
-    "recordDashboardTest": "npm run test -- --record --key ed79bcb9-5791-4913-8e08-5f203ce665eb",
+    "recordDashboardTest": "npx run test -- --record --key ed79bcb9-5791-4913-8e08-5f203ce665eb --reporter mochawesome",
     "oneTest": "npm run test -- -- spec \"cypress/integration/Test8Framework/\""
+
   },
   "cypress-cucumber-preprocessor": {
     "json": {
