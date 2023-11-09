@@ -13,7 +13,7 @@ context('Window',() =>
             console.log(result[1])
             data = result
             //then below would use it to add somewhere
-            cy.get('some box').type(data[0])
+           // cy.get('some box').type(data[0])
        })
     })
 })
